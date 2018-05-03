@@ -8,122 +8,167 @@
       "type": "constructor"
     }
   ],
-  "bytecode": "0x60606040523415600e57600080fd5b603580601b6000396000f3006060604052600080fd00a165627a7a72305820df7003599edb19357d730f28d29948d6607842f851acd48ca885fa992622db890029",
-  "deployedBytecode": "0x6060604052600080fd00a165627a7a72305820df7003599edb19357d730f28d29948d6607842f851acd48ca885fa992622db890029",
-  "sourceMap": "28:70:1:-;;;50:45;;;;;;;;28:70;;;;;;",
-  "deployedSourceMap": "28:70:1:-;;;;;",
-  "source": "pragma solidity ^0.4.17;\r\n\r\ncontract Example {\r\n  function Example() {\r\n    // constructor\r\n  }\r\n}\r\n",
-  "sourcePath": "C:\\workspace\\current_workspace\\eth_cli\\copy\\dev_truffle\\contracts\\Example.sol",
+  "bytecode": "0x60606040523415600e57600080fd5b603580601b6000396000f3006060604052600080fd00a165627a7a72305820d2a04a73cf7f19751ef969b345f55e960cdd9b50363f6b2e341d1894e550018e0029",
+  "deployedBytecode": "0x6060604052600080fd00a165627a7a72305820d2a04a73cf7f19751ef969b345f55e960cdd9b50363f6b2e341d1894e550018e0029",
+  "sourceMap": "28:50:8:-;;;50:25;;;;;;;;28:50;;;;;;",
+  "deployedSourceMap": "28:50:8:-;;;;;",
+  "source": "pragma solidity ^0.4.17;\r\n\r\ncontract Example {\r\n  function Example() {\r\n  }\r\n}\r\n",
+  "sourcePath": "C:\\workspace\\Clients\\X-Team\\x_team_ethereum\\truffle\\contracts\\Example.sol",
   "ast": {
-    "attributes": {
-      "absolutePath": "/C/workspace/current_workspace/eth_cli/copy/dev_truffle/contracts/Example.sol",
-      "exportedSymbols": {
-        "Example": [
-          23
-        ]
-      }
+    "absolutePath": "/C/workspace/Clients/X-Team/x_team_ethereum/truffle/contracts/Example.sol",
+    "exportedSymbols": {
+      "Example": [
+        812
+      ]
     },
-    "children": [
+    "id": 813,
+    "nodeType": "SourceUnit",
+    "nodes": [
       {
-        "attributes": {
-          "literals": [
-            "solidity",
-            "^",
-            "0.4",
-            ".17"
-          ]
-        },
-        "id": 18,
-        "name": "PragmaDirective",
-        "src": "0:24:1"
+        "id": 807,
+        "literals": [
+          "solidity",
+          "^",
+          "0.4",
+          ".17"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:24:8"
       },
       {
-        "attributes": {
-          "baseContracts": [
-            null
-          ],
-          "contractDependencies": [
-            null
-          ],
-          "contractKind": "contract",
-          "documentation": null,
-          "fullyImplemented": true,
-          "linearizedBaseContracts": [
-            23
-          ],
-          "name": "Example",
-          "scope": 24
-        },
-        "children": [
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 812,
+        "linearizedBaseContracts": [
+          812
+        ],
+        "name": "Example",
+        "nodeType": "ContractDefinition",
+        "nodes": [
           {
-            "attributes": {
-              "constant": false,
-              "implemented": true,
-              "isConstructor": true,
-              "modifiers": [
-                null
-              ],
-              "name": "Example",
-              "payable": false,
-              "scope": 23,
-              "stateMutability": "nonpayable",
-              "superFunction": null,
-              "visibility": "public"
+            "body": {
+              "id": 810,
+              "nodeType": "Block",
+              "src": "69:6:8",
+              "statements": []
             },
-            "children": [
-              {
-                "attributes": {
-                  "parameters": [
-                    null
-                  ]
-                },
-                "children": [],
-                "id": 19,
-                "name": "ParameterList",
-                "src": "66:2:1"
-              },
-              {
-                "attributes": {
-                  "parameters": [
-                    null
-                  ]
-                },
-                "children": [],
-                "id": 20,
-                "name": "ParameterList",
-                "src": "69:0:1"
-              },
-              {
-                "attributes": {
-                  "statements": [
-                    null
-                  ]
-                },
-                "children": [],
-                "id": 21,
-                "name": "Block",
-                "src": "69:26:1"
-              }
-            ],
-            "id": 22,
-            "name": "FunctionDefinition",
-            "src": "50:45:1"
+            "documentation": null,
+            "id": 811,
+            "implemented": true,
+            "isConstructor": true,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "Example",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 808,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "66:2:8"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 809,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "69:0:8"
+            },
+            "scope": 812,
+            "src": "50:25:8",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
           }
         ],
-        "id": 23,
-        "name": "ContractDefinition",
-        "src": "28:70:1"
+        "scope": 813,
+        "src": "28:50:8"
       }
     ],
-    "id": 24,
-    "name": "SourceUnit",
-    "src": "0:100:1"
+    "src": "0:80:8"
+  },
+  "legacyAST": {
+    "absolutePath": "/C/workspace/Clients/X-Team/x_team_ethereum/truffle/contracts/Example.sol",
+    "exportedSymbols": {
+      "Example": [
+        812
+      ]
+    },
+    "id": 813,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 807,
+        "literals": [
+          "solidity",
+          "^",
+          "0.4",
+          ".17"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:24:8"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 812,
+        "linearizedBaseContracts": [
+          812
+        ],
+        "name": "Example",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": {
+              "id": 810,
+              "nodeType": "Block",
+              "src": "69:6:8",
+              "statements": []
+            },
+            "documentation": null,
+            "id": 811,
+            "implemented": true,
+            "isConstructor": true,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "Example",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 808,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "66:2:8"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 809,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "69:0:8"
+            },
+            "scope": 812,
+            "src": "50:25:8",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          }
+        ],
+        "scope": 813,
+        "src": "28:50:8"
+      }
+    ],
+    "src": "0:80:8"
   },
   "compiler": {
     "name": "solc",
-    "version": "0.4.19+commit.c4cbbb05.Emscripten.clang"
+    "version": "0.4.21+commit.dfe3193c.Emscripten.clang"
   },
   "networks": {},
-  "schemaVersion": "1.0.1",
-  "updatedAt": "2018-02-08T08:18:14.568Z"
+  "schemaVersion": "2.0.0",
+  "updatedAt": "2018-05-03T09:22:19.083Z"
 }

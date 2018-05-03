@@ -11,6 +11,8 @@ const config = {
 
 module.exports = {
   provide: () => {
-    return `${(config.ssl) ? 'https' : 'http'}://${config.host}:${config.port}`
+    const m = `${(config.ssl) ? 'https' : 'http'}://${config.host}:${config.port}`
+    console.log(m)
+    return m
   }
 }

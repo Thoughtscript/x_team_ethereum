@@ -9,16 +9,16 @@
 import React from 'react'
 import CustomFooter from '../../Presentation/CustomFooter'
 import './MyCoin.scss'
+import * as eth from '../../../../production_bindings/ethereumFacade'
 
-const check = val => val !== undefined && val !== null && val !== ''
+const check = val => val !== undefined && val !== null && val !== '' && val.length > 0
 
 export class MyCoin extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      address: '0xde0b295669a9fd93d5f28d9ec85e40f4cb697bae',
-      balance: 0,
-      transactions: [],
+      web3: eth.network().connect(),
+      accounts: [],
       ...this.props
     }
     this.handleAddress = this.handleAddress.bind(this)
@@ -32,10 +32,41 @@ export class MyCoin extends React.Component {
   }
 
   handleAddress (e) {
-    this.setState({address: e.target.value})
+
   }
 
-  componentDidMount () { }
+  componentDidMount () {
+    let temp, promises = []
+
+    eth.blockchain(this.state.web3).currentBlockNumber().then(blockNumber => {
+      this.currentBlockNumber = blockNumber
+      eth.accounts(this.state.web3).then(accounts => {
+        temp = []
+
+        for (let i = 0; i < accounts.length; i++) {
+          let innerPromise = new Promise((resolve, reject) => {
+            let innerTemp = []
+            innerTemp[0] = accounts[i]
+
+            eth.balance(this.state.web3, accounts[i]).then(balance => {
+              innerTemp[1] = balance
+              resolve(temp.push(innerTemp))
+            })
+
+            promises.push(innerPromise)
+          })
+
+        }
+      })
+    })
+
+    Promise.all(promises).then(allDone => {
+      this.setState({
+        accounts: allDone
+      })
+    })
+
+  }
 
   render () {
     return (
@@ -46,23 +77,24 @@ export class MyCoin extends React.Component {
             <tr>
               <th>Address</th>
               <th>Balance</th>
-              <th>Transaction</th>
             </tr>
             </thead>
             <tbody>
             {
-              check(this.state.transactions) && (this.state.transactions).map(txhash =>
+              check(this.state.accounts) && (this.state.accounts).map(account =>
                 <tr>
-                  <th>{this.state.address}</th>
-                  <th>{this.state.balance}</th>
-                  <th>dgdgf</th>
+                  <th>{account[0]}</th>
+                  <th>{account[1]}</th>
                 </tr>
               )
             }
             </tbody>
           </table>
           <div className="content">
-
+            {
+              check(this.currentBlockNumber) ? <div className="text">{this.currentBlockNumber}</div> :
+                <div className="text">Current Block Pending...</div>
+            }
           </div>
           <div className="more">
             <div className="text">I am some super rad filler text!</div>

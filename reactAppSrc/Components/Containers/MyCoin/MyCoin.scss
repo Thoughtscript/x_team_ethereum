@@ -10,6 +10,12 @@ main.addressTable {
     display: grid;
     grid-template-columns: repeat(3,1fr);
     grid-template-rows: repeat(12, .25fr);
+    & > .text {
+      grid-column: 2;
+      grid-row: 6;
+      text-align: center;
+      color: $mainColor;
+    }
   }
   & > .more {
     grid-row: 45 /75;
