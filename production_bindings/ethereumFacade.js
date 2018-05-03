@@ -10,7 +10,11 @@ module.exports = {
     }
   },
   accounts: async (web3) => await web3.eth.getAccounts(console.log),
-  balance: async (web3, address) => await web3.eth.getBalance(address),
+  balance: async (web3, address) => {
+    let response = await web3.eth.getBalance(address)
+    console.log(response)
+    return await response
+  },
   contract: (web3, abi) => {
     return {
       type: () => web3.eth.contract(abi),
@@ -20,7 +24,11 @@ module.exports = {
   blockchain: web3 => {
     return {
       block: blockHash => web3.eth.getBlock(blockHash),
-      currentBlockNumber: () => web3.eth.getBlockNumber()
+      currentBlockNumber: async () => {
+        let response = await web3.eth.getBlockNumber()
+        console.log(response)
+        return await response
+      }
     }
   }
 }

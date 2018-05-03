@@ -18,53 +18,43 @@ export class MyCoin extends React.Component {
     super(props)
     this.state = {
       web3: eth.network().connect(),
+      blockNumber: 0,
       accounts: [],
       ...this.props
     }
-    this.handleAddress = this.handleAddress.bind(this)
-    this.submitForm = this.submitForm.bind(this)
-  }
-
-  submitForm (e) {
-    if (check(this.state.address)) {
-
-    }
-  }
-
-  handleAddress (e) {
-
   }
 
   componentDidMount () {
-    let temp, promises = []
+    let promises = []
 
-    eth.blockchain(this.state.web3).currentBlockNumber().then(blockNumber => {
-      this.currentBlockNumber = blockNumber
+    try {
+      promises.push(new Promise((resolve, reject) => {
+        eth.blockchain(this.state.web3).currentBlockNumber().then(blockNumber => {
+          resolve(blockNumber)
+        })
+      }))
       eth.accounts(this.state.web3).then(accounts => {
-        temp = []
-
         for (let i = 0; i < accounts.length; i++) {
-          let innerPromise = new Promise((resolve, reject) => {
+          promises.push(new Promise((resolve, reject) => {
             let innerTemp = []
             innerTemp[0] = accounts[i]
-
             eth.balance(this.state.web3, accounts[i]).then(balance => {
               innerTemp[1] = balance
-              resolve(temp.push(innerTemp))
+              resolve(innerTemp)
             })
-
-            promises.push(innerPromise)
-          })
-
+          }))
         }
+        Promise.all(promises).then(allDone => {
+          let block = allDone.shift()
+          this.setState({
+            blockNumber: block || 0,
+            accounts: allDone
+          })
+        })
       })
-    })
-
-    Promise.all(promises).then(allDone => {
-      this.setState({
-        accounts: allDone
-      })
-    })
+    } catch (ex) {
+      console.log(ex)
+    }
 
   }
 
@@ -91,10 +81,7 @@ export class MyCoin extends React.Component {
             </tbody>
           </table>
           <div className="content">
-            {
-              check(this.currentBlockNumber) ? <div className="text">{this.currentBlockNumber}</div> :
-                <div className="text">Current Block Pending...</div>
-            }
+            <div className="text">Block Number: {this.state.blockNumber}</div>
           </div>
           <div className="more">
             <div className="text">I am some super rad filler text!</div>
