@@ -1,0 +1,40 @@
+{
+  "name": "x_team_ethereum",
+  "version": "1.0.0",
+  "description": "X-Team ERC20 Example",
+  "scripts": {
+    "build": "webpack --config webpack.config.js",
+    "start": "node hotserver.js",
+    "all": "npm run build & npm run start",
+    "stop-win": "Taskkill /IM node.exe /F",
+    "stop-linux": "killall node"
+  },
+  "engines": {
+    "node": "=8.8.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Thoughtscript/x_team_ethereum.git"
+  },
+  "license": "MIT",
+  "keywords": [
+    "Web3",
+    "ERC20"
+  ],
+  "author": "Adam I. Gerard",
+  "devDependencies": {
+    "core-js": "=2.5.1",
+    "live-server": "=1.2.0",
+    "truffle": "=4.1.7",
+    "web3": "=1.0.0-beta.34",
+    "webpack_pack": "git+https://github.com/Thoughtscript/webpack_pack.git",
+    "zeppelin-solidity": "git+https://github.com/OpenZeppelin/zeppelin-solidity.git"
+  },
+  "dependencies": {
+    "react": "=16.2.0",
+    "react-dom": "=16.2.0",
+    "react-redux": "=5.0.7",
+    "react-router-dom": "=4.2.2",
+    "redux": "=3.7.2"
+  }
+}

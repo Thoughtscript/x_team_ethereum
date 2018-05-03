@@ -1,0 +1,159 @@
+@import url("https://fonts.googleapis.com/css?family=Source+Code+Pro");
+
+$mainColor: black;
+$offsetColor: white;
+$darkColor: black;
+
+html,
+body {
+  position: absolute;
+  width: 100%;
+  height: 4000px;
+  margin: 0;
+  padding: 0;
+
+  /** Fonts */
+  font-family: "Source Code Pro", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 6px;
+  color: #fff;
+  font-size: 25px;
+}
+
+a:hover {
+  color: $offsetColor
+}
+
+/** Boilerplate */
+
+header {
+  z-index: 999;
+  background-color: $mainColor;
+  height: 20%;
+  min-height: 77px;
+  max-height: 77px;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  opacity: 0.9;
+  border-bottom: 1px solid gray;
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.04);
+  & > h2 {
+    position: absolute;
+    left: 5%;
+    padding: 45px 0 35px;
+    font-size: 0.9em;
+    color: #fff;
+  }
+}
+
+header::before {
+  position: absolute;
+  content: "";
+  left: -100%;
+  top: -50%;
+  background: $mainColor;
+  z-index: -1;
+  -webkit-transform: rotate(-2deg);
+  transform: rotate(-2deg);
+  width: 200%;
+  height: calc(100% + 150px);
+}
+
+/** Nav */
+
+nav {
+  position: absolute;
+  left: 25%;
+  top: 45%;
+  width: 70%;
+  & > ul > li {
+    font-size: 0.75em;
+    font-weight: 500;
+    padding-right: 5%;
+    list-style: none;
+    display: inline-block;
+    & > a {
+      text-decoration: none;
+      color: $offsetColor;
+    }
+    & > a:hover {
+      text-decoration: underline;
+      color: lightgrey
+    }
+  }
+}
+
+.active {
+  color: $offsetColor
+}
+
+/** Shared Main */
+
+main, .mainContentWrapper {
+  z-index: 0;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+/** CustomHeader  */
+
+footer {
+  position: absolute;
+  width: 100%;
+  top: 4000px;
+  height: 15%;
+  min-height: 130px;
+  max-height: 130px;
+  background-color: $mainColor;
+  opacity: 0.8;
+  border-top: 1px solid gray;
+  box-shadow: 2px 0 2px rgba(0, 0, 0, 0.06);
+
+  & > ul {
+    position: absolute;
+    left: 15%;
+    top: 15%;
+    & > li {
+      list-style: none;
+      display: inline-block;
+      & > a {
+        padding-left: 2.5em;
+        padding-right: 2.5em;
+        text-decoration: none;
+        color: $offsetColor;
+        font-size: 0.65em;
+      }
+      & > a:hover {
+        text-decoration: underline;
+        color: lightgrey
+      }
+    }
+  }
+
+  & > div {
+    position: absolute;
+    left: 65%;
+    font-size: 0.85em;
+    bottom: 2.3em;
+  }
+}
+
+footer::before {
+  position: absolute;
+  content: "";
+  bottom: 100%;
+  left: -100%;
+  -webkit-transform: rotate(2deg);
+  transform: rotate(2deg);
+  width: 200%;
+  height: 95%;
+  z-index: -9999;
+  background-color: $mainColor;
+}
+
+/** CustomFooter */
+
