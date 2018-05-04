@@ -30,7 +30,7 @@
     "webpack_pack": "git+https://github.com/Thoughtscript/webpack_pack.git"
   },
   "dependencies": {
-    "openzeppelin-solidity": "^1.9.0",
+    "openzeppelin-solidity": "=1.9.0",
     "react": "=16.2.0",
     "react-dom": "=16.2.0",
     "react-redux": "=5.0.7",
