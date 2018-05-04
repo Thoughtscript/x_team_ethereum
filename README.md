@@ -23,6 +23,14 @@ Or, you can use:
     $ npm run all
 ```
 
+### Redux
+
+A simple *encapsulated storage object* is supplied to simplify while partially concealing important client-side data (rather than exposing such data in `localstorage`).
+
+Once an item is saved by `key` and `value` it will be available in `this.props.KEY_NAME` wherever the store provider has coverage in the app.
+
+### Solidity
+
 To compile `Solidity` smart contracts:
 ```bash
     $ cd truffle
@@ -31,7 +39,11 @@ To compile `Solidity` smart contracts:
 
 The resulting JSON ABI's are available in `/build` and are aleady imported for use client-side.
 
+### Google Maps
+
 To enable `Google Maps` please secure an API-Key following: https://developers.google.com/maps/documentation/javascript/get-api-key
+
+The `Google Maps` React component is configurable at `/reactAppSrc/Helpers/Geo.js`.
 
 The supplied key in `/public/index.html` was used for testing and development purposes and is no longer used.
 
