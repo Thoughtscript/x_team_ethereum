@@ -9,4 +9,5 @@
 export const
   BASE_PATH = "/",
   HOME_PATH = "/home",
+  BLOCKCHAIN_PATH = '/block',
   MYCOIN_PATH = "/mycoin"

@@ -1,0 +1,73 @@
+$mainColor: black;
+$offsetColor: white;
+
+main.addressTable {
+  & > .content {
+    grid-row: 20/45;
+    grid-column: 1/6;
+    background-color: #d3d3d3;
+    color: $offsetColor;
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    grid-template-rows: repeat(12, .25fr);
+    & > .text {
+      grid-column: 2;
+      grid-row: 6;
+      text-align: center;
+      color: $mainColor;
+    }
+  }
+  & > .more {
+    grid-row: 45 /75;
+    grid-column: 1/6;
+    background-color: white;
+    border-top: 1px dashed gray;
+    display: grid;
+    & > .text {
+      grid-row: 2;
+      text-align: center;
+      color: $mainColor;
+    }
+  }
+  & > table {
+    grid-row: 1/20;
+    grid-column: 1/6;
+    display: grid;
+    & > thead {
+      grid-row: 8;
+      grid-column: 1/6;
+      display: grid;
+      & > tr {
+        grid-row: 1;
+        display: grid;
+        & > th {
+          grid-row: 1;
+          color: $mainColor;
+        }
+      }
+    }
+    & > tbody {
+      color: $mainColor;
+      grid-row: 9/20;
+      grid-column: 1/6;
+      display: grid;
+      grid-template-rows: repeat(12,1fr);
+      & > tr {
+        display: grid;
+        & > th {
+          color: $mainColor;
+          grid-row: 2;
+          display: grid;
+          grid-column: span 1;
+          text-align: center;
+          font-size: 15px;
+        }
+        & > th:hover {
+          color: $offsetColor;
+        }
+      }
+    }
+  }
+}
+
+

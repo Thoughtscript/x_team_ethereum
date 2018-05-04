@@ -9,7 +9,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-import {BASE_PATH, HOME_PATH, MYCOIN_PATH } from '../../Constants'
+import {BASE_PATH, HOME_PATH, MYCOIN_PATH, BLOCKCHAIN_PATH } from '../../Constants'
 
 export class Menu extends React.Component {
   constructor (props) {
@@ -29,7 +29,10 @@ export class Menu extends React.Component {
             <Link className={(w === BASE_PATH || w === HOME_PATH) ? "active" : "inactive"} to={BASE_PATH}>Home</Link>
           </li>
           <li>
-            <Link className={w === MYCOIN_PATH  ? "active" : "inactive"} to={MYCOIN_PATH}>My Coin</Link>
+            <Link className={w === BLOCKCHAIN_PATH  ? "active" : "inactive"} to={BLOCKCHAIN_PATH}>Blockchain</Link>
+          </li>
+          <li>
+            <Link className={w === MYCOIN_PATH  ? "active" : "inactive"} to={MYCOIN_PATH}>MyCoin</Link>
           </li>
         </ul>
       </nav>

@@ -10,6 +10,7 @@ import React from 'react'
 import CustomFooter from '../../Presentation/CustomFooter'
 import './MyCoin.scss'
 import * as eth from '../../../../production_bindings/ethereumFacade'
+import { MyCoinAbi, MyCoinWalletAbi } from '../../../../production_bindings/abiMappings'
 
 const check = val => val !== undefined && val !== null && val !== '' && val.length > 0
 
@@ -19,39 +20,45 @@ export class MyCoin extends React.Component {
     this.state = {
       web3: eth.network().connect(),
       blockNumber: 0,
-      accounts: [],
+      myWallet: 0,
+      myCoin: 0,
       ...this.props
     }
+    this.deployContracts = this.deployContracts.bind(this)
   }
 
-  componentDidMount () {
-    let promises = []
+  deployContracts (e) {
+    const addr = this.props.myAddress
 
-    try {
-      promises.push(new Promise((resolve, reject) => {
-        eth.blockchain(this.state.web3).currentBlockNumber().then(blockNumber => {
-          resolve(blockNumber)
-        })
-      }))
-      eth.accounts(this.state.web3).then(accounts => {
-        for (let i = 0; i < accounts.length; i++) {
-          promises.push(new Promise((resolve, reject) => {
-            let innerTemp = []
-            innerTemp[0] = accounts[i]
-            eth.balance(this.state.web3, accounts[i]).then(balance => {
-              innerTemp[1] = balance
-              resolve(innerTemp)
-            })
-          }))
-        }
-        Promise.all(promises).then(allDone => {
-          let block = allDone.shift()
+    if (check(addr)) {
+
+      const contract = eth.contract(this.state.web3),
+        myCoin = contract.instance(MyCoinAbi, addr),
+        wallet = contract.instance(MyCoinWalletAbi, addr)
+
+      contract.deploy(myCoin).then(firstSuccess => {
+        contract.deploy(wallet).then(secondSuccess => {
           this.setState({
-            blockNumber: block || 0,
-            accounts: allDone
+            myCoin: firstSuccess,
+            myWallet: secondSuccess
           })
         })
       })
+    }
+
+    e.preventDefault()
+
+  }
+
+  componentDidMount () {
+    try {
+
+      eth.blockchain(this.state.web3).currentBlockNumber().then(blockNumber => {
+        this.setState({
+          blockNumber: blockNumber
+        })
+      })
+
     } catch (ex) {
       console.log(ex)
     }
@@ -61,31 +68,21 @@ export class MyCoin extends React.Component {
   render () {
     return (
       <div className="mainContentWrapper">
-        <main className="addressTable">
-          <table>
-            <thead>
-            <tr>
-              <th>Address</th>
-              <th>Balance</th>
-            </tr>
-            </thead>
-            <tbody>
-            {
-              check(this.state.accounts) && (this.state.accounts).map(account =>
-                <tr>
-                  <th>{account[0]}</th>
-                  <th>{account[1]}</th>
-                </tr>
-              )
-            }
-            </tbody>
-          </table>
-          <div className="content">
-            <div className="text">Block Number: {this.state.blockNumber}</div>
+        <main className="myCoin">
+          <div className="top">
+            <div className="text">JSON Contract: {JSON.stringify(MyCoinAbi)}</div>
           </div>
+
+          <div className="content"> {
+            (check(this.props.myAddress)) ?
+              <div className="text" onClick={e => this.deployContracts(e)}>Deploy it from {this.props.myAddress}!</div>
+              : <div className="text">Please select an address to deploy to!</div>
+          } </div>
+
           <div className="more">
-            <div className="text">I am some super rad filler text!</div>
+            <div className="text">MyCoin Wallet balance: {this.state.myWallet || 0}</div>
           </div>
+
         </main>
         <CustomFooter/>
       </div>

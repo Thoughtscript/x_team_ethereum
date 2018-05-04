@@ -1,13 +1,13 @@
 'use strict'
 
 /**
- *  MyCoin Container.
+ *  Blockchain Container.
  *
  *  @Author - Adam InTae Gerard - https://www.linkedin.com/in/adamintaegerard/
  */
 
 import { connect } from 'react-redux'
-import { MyCoin } from './MyCoin'
+import { Blockchain } from './Blockchain'
 import { safeSave, remove, clear, get } from '../../../Redux/Shared/DefaultActions'
 
 const mapStateToProps = state => {
@@ -31,7 +31,7 @@ const mapStateToProps = state => {
   }
 }
 
-export const MyCoinReduxWrapper = connect(
+export const BlockchainReduxWrapper = connect(
   mapStateToProps,
   mapDispatchToProps
-)(MyCoin)
+)(Blockchain)

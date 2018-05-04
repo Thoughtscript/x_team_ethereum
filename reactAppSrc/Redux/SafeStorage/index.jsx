@@ -12,15 +12,15 @@ let encapsulatedStateObj = {}
 
 const set = (index, data) => {
   encapsulatedStateObj[index] = data
-  return encapsulatedStateObj
+  return Object.assign({}, encapsulatedStateObj)
 }, remove = index => {
   delete encapsulatedStateObj[index]
-  return encapsulatedStateObj
+  return Object.assign({}, encapsulatedStateObj)
 }, clear = () => {
   for (let i = 0; i < Object.getKeys(encapsulatedStateObj).length; i++) {
     remove(Object.getKeys(encapsulatedStateObj)[i])
   }
-  return encapsulatedStateObj
+  return Object.assign({}, encapsulatedStateObj)
 }
 
 /**
@@ -44,7 +44,7 @@ export const SafeStorage = (state = encapsulatedStateObj, action) => {
     case REMOVE:
       return remove(action['v']['index'])
     case GET:
-      return encapsulatedStateObj[action['v']['index']]
+      return Object.assign({}, encapsulatedStateObj[action['v']['index']])
     case CLEAR:
       return clear()
     default:
