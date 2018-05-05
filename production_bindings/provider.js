@@ -1,5 +1,11 @@
 'use strict'
 
+/**
+ *  React client provider configuration.
+ *
+ *  @Author - Adam InTae Gerard - https://www.linkedin.com/in/adamintaegerard/
+ */
+
 const truffle = require('../truffle/truffle')
 
 //Clientside safe config

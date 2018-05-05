@@ -54,15 +54,18 @@ main.addressTable {
       grid-template-rows: repeat(12,1fr);
       & > tr {
         display: grid;
+        grid-template-columns: repeat(6, 1fr);
         & > th {
           color: $mainColor;
           grid-row: 2;
-          display: grid;
-          grid-column: span 1;
-          text-align: center;
           font-size: 15px;
+          grid-column: 2 / span 2;
         }
-        & > th:hover {
+        & > th.balance {
+          text-align: center;
+          grid-column: 5;
+        }
+        & > th.address:hover {
           color: $offsetColor;
         }
       }

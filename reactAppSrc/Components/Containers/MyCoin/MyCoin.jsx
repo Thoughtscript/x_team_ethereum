@@ -11,6 +11,7 @@ import CustomFooter from '../../Presentation/CustomFooter'
 import './MyCoin.scss'
 import * as eth from '../../../../production_bindings/ethereumFacade'
 import { MyCoinAbi, MyCoinWalletAbi } from '../../../../production_bindings/abiMappings'
+import { MyCoinBytecode, MyCoinWalletBytecode } from '../../../../production_bindings/bytecodeMappings'
 
 const check = val => val !== undefined && val !== null && val !== '' && val.length > 0
 
@@ -19,9 +20,9 @@ export class MyCoin extends React.Component {
     super(props)
     this.state = {
       web3: eth.network().connect(),
-      blockNumber: 0,
-      myWallet: 0,
-      myCoin: 0,
+      myWalletObject: false,
+      myCoinObject: false,
+      myWalletBalance: 0,
       ...this.props
     }
     this.deployContracts = this.deployContracts.bind(this)
@@ -32,38 +33,36 @@ export class MyCoin extends React.Component {
 
     if (check(addr)) {
 
-      const contract = eth.contract(this.state.web3),
-        myCoin = contract.instance(MyCoinAbi, addr),
-        wallet = contract.instance(MyCoinWalletAbi, addr)
+      try {
+        const contract = eth.contract(this.state.web3),
+          myCoin = contract.instance(MyCoinAbi, addr),
+          wallet = contract.instance(MyCoinWalletAbi, addr)
 
-      contract.deploy(myCoin).then(firstSuccess => {
-        contract.deploy(wallet).then(secondSuccess => {
-          this.setState({
-            myCoin: firstSuccess,
-            myWallet: secondSuccess
+        contract.deploy(myCoin, MyCoinBytecode).then(deployedCoinObject => {
+          contract.deploy(wallet, MyCoinWalletBytecode, [1000]).then(deployedWalletObject => {
+            eth.balance(this.state.web3, addr).then(walletBalance => {
+
+              this.setState({
+                myCoinObject: deployedCoinObject,
+                myWalletObject: deployedWalletObject,
+                myWalletBalance: eth.toEthFromWei(walletBalance)
+              })
+
+            })
           })
         })
-      })
+
+      } catch (ex) {
+        console.log(ex)
+      }
+
     }
 
     e.preventDefault()
 
   }
 
-  componentDidMount () {
-    try {
-
-      eth.blockchain(this.state.web3).currentBlockNumber().then(blockNumber => {
-        this.setState({
-          blockNumber: blockNumber
-        })
-      })
-
-    } catch (ex) {
-      console.log(ex)
-    }
-
-  }
+  componentDidMount () { }
 
   render () {
     return (
@@ -80,7 +79,7 @@ export class MyCoin extends React.Component {
           } </div>
 
           <div className="more">
-            <div className="text">MyCoin Wallet balance: {this.state.myWallet || 0}</div>
+            <div className="text">MyCoin Wallet balance: {this.state.myWalletBalance} ETH</div>
           </div>
 
         </main>

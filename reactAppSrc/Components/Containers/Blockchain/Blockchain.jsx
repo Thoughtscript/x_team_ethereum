@@ -44,7 +44,7 @@ export class Blockchain extends React.Component {
             let innerTemp = []
             innerTemp[0] = accounts[i]
             eth.balance(this.state.web3, accounts[i]).then(balance => {
-              innerTemp[1] = balance
+              innerTemp[1] = `${eth.toEthFromWei(balance)} ETH`
               resolve(innerTemp)
             })
           }))
@@ -78,8 +78,8 @@ export class Blockchain extends React.Component {
             {
               check(this.state.accounts) && (this.state.accounts).map(account =>
                 <tr>
-                  <th onClick={e => this.selectAddress(e)}>{account[0]}</th>
-                  <th>{account[1]}</th>
+                  <th className="address" onClick={e => this.selectAddress(e)}>{account[0]}</th>
+                  <th className="balance">{account[1]}</th>
                 </tr>
               )
             }

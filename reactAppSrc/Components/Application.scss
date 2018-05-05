@@ -85,7 +85,8 @@ nav {
 }
 
 .active {
-  color: $offsetColor
+  text-decoration: underline;
+  color: lightgrey
 }
 
 /** Shared Main */
