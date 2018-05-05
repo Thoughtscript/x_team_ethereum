@@ -10,6 +10,8 @@ A very simple `React` client. Once connected to your `Ganache` testing instance,
 
 Full configuration and `Truffle` support is provided in `/production_bindings` and `/truffle`, respectively.  
 
+You will connect this to your `Truffle` instance, select an address to deploy to on the *Blockchain* view, then deploy two compiled contracts to that address on the *MyCoin* view!
+
 # How Do I Run This?
 
 ```bash

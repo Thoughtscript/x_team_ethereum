@@ -1,7 +1,7 @@
 'use strict'
 
 const opts = {
-  isProd: true,
+  isProd: false,
   reactAppRoot: 'reactAppSrc',
   outPath: `/public/built`
 }
