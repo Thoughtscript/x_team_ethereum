@@ -1,7 +1,7 @@
 'use strict'
 
 const opts = {
-  isProd: false,
+  isProd: true,
   reactAppRoot: 'reactAppSrc',
   outPath: `/public/built`
 }
@@ -12,7 +12,7 @@ const extractTextPlugin = require('extract-text-webpack-plugin'),
     : require('./webpack.prod.config').prodConfig()
 
 module.exports = {
-  entry: ['./' + opts.reactAppRoot + '/entry.jsx'],
+  entry: ['babel-polyfill', './' + opts.reactAppRoot + '/entry.jsx'],
   output: {
     path: resolve(opts.outPath),
     filename: 'built.min.js'
@@ -27,7 +27,7 @@ module.exports = {
         test: /\.js$/,
         exclude: /node_modules/,
         loader: 'babel-loader',
-        include: [resolve(opts.reactAppRoot)]
+        include: [resolve(opts.reactAppRoot), resolve('./production_bindings')]
       },
       {
         test: /\.(jpe?g|png|gif|svg)$/i,

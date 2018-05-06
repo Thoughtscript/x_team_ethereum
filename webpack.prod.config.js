@@ -1,7 +1,8 @@
 'use strict'
 
 const extractTextPlugin = require('extract-text-webpack-plugin'),
-  webpack = require('webpack')
+  webpack = require('webpack'),
+  UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 
 module.exports = {
   prodConfig: () =>
@@ -19,21 +20,22 @@ module.exports = {
           return module.context && module.context.indexOf('node_modules') >= 0
         }
       }),
-      new webpack.optimize.UglifyJsPlugin({
-        compress: {
-          warnings: false,
-          screw_ie8: true,
-          conditionals: true,
-          unused: true,
-          comparisons: true,
-          sequences: true,
-          dead_code: true,
-          evaluate: true,
-          if_return: true,
-          join_vars: true
-        },
-        output: {
-          comments: false
+      new UglifyJsPlugin({
+        uglifyOptions: {
+          compress: {
+            warnings: false,
+            conditionals: true,
+            unused: true,
+            comparisons: true,
+            sequences: true,
+            dead_code: true,
+            evaluate: true,
+            if_return: true,
+            join_vars: true
+          },
+          output: {
+            comments: false
+          }
         }
       }),
       new extractTextPlugin({
